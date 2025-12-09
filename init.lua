@@ -10,6 +10,7 @@ require('plugins.fzf')
 require('plugins.conform')
 require('plugins.gitsigns')
 require('plugins.lualine')
+require('plugins.bufferline')
 
 
 ---

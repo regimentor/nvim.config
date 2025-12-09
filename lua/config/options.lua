@@ -18,12 +18,13 @@ vim.opt.winborder = "rounded"
 vim.opt.undofile = true
 vim.opt.confirm = true
 -- Tab settings
-vim.o.tabstop = 4        -- Tab width in spaces
-vim.o.shiftwidth = 4     -- Indent size for >> and <<
-vim.o.expandtab = true   -- Convert tabs to spaces
-vim.o.smartindent = true -- Smart indentationk
+vim.opt.tabstop = 4        -- Tab width in spaces
+vim.opt.shiftwidth = 4     -- Indent size for >> and <<
+vim.opt.expandtab = true   -- Convert tabs to spaces
+vim.opt.smartindent = true -- Smart indentationk
 -- Cursorline
 vim.opt.cursorline = true
+vim.opt.termguicolors = true
 
 -- Show whitespace characters
 vim.opt.list = true
