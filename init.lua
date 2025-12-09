@@ -11,7 +11,7 @@ require('plugins.conform')
 require('plugins.gitsigns')
 require('plugins.lualine')
 require('plugins.bufferline')
-
+require('plugins.copilot')
 
 ---
 --- CONFIG

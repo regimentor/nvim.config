@@ -8,6 +8,10 @@
       "rev": "ffe26e8df8115c9665d24231f8a49fadb2d611ce",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "copilot.vim": {
+      "rev": "f89e977c87180519ba3b942200e3d05b17b1e2fc",
+      "src": "https://github.com/github/copilot.vim"
+    },
     "cyberdream.nvim": {
       "rev": "a43b45423e8494898c353c0604e0b2e4e99bd056",
       "src": "https://github.com/scottmckendry/cyberdream.nvim"
