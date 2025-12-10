@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "auto-session": {
+      "rev": "292492ab7af4bd8b9e37e28508bc8ce995722fd5",
+      "src": "https://github.com/rmagatti/auto-session"
+    },
     "bufferline.nvim": {
       "rev": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3",
       "src": "https://github.com/akinsho/bufferline.nvim"
@@ -48,6 +52,10 @@
     "nvim-web-devicons": {
       "rev": "8dcb311b0c92d460fac00eac706abd43d94d68af",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
+    },
+    "smear-cursor.nvim": {
+      "rev": "c85bdbb25db096fbcf616bc4e1357bd61fe2c199",
+      "src": "https://github.com/sphamba/smear-cursor.nvim"
     }
   }
 }

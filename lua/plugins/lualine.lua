@@ -40,7 +40,7 @@ local filename = {
     'filename',
     file_status = true,    -- Displays file status (readonly status, modified status)
     newfile_status = true, -- Display new file status (new file means no write after created)
-    path = 1,              -- 0: Just the filename
+    path = 0,              -- 0: Just the filename
     -- 1: Relative path
     -- 2: Absolute path
     -- 3: Absolute path, with tilde as the home directory
@@ -145,7 +145,7 @@ require('lualine').setup({
         },
     },
     inactive_sections = {
-        lualine_a = { 'filename', path = 1 },
+        lualine_a = { { 'filename', path = 1 } },
         lualine_b = {},
         lualine_c = {},
         lualine_x = {},

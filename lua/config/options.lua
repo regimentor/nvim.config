@@ -30,21 +30,14 @@ vim.opt.termguicolors = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
+vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+    callback = function()
+        vim.wo.cursorline = true
+    end,
+})
 
-
-function _G.WinbarIcon()
-    local ok, devicons = pcall(require, "nvim-web-devicons")
-    if not ok then
-        return ""
-    end
-
-    local filename = vim.fn.expand("%:t")
-    if filename == "" then
-        return ""
-    end
-
-    local icon, _ = devicons.get_icon(filename, nil, { default = true })
-    return icon or ""
-end
-
-vim.o.winbar = "%#WinBar# %{v:lua.WinbarIcon()} %f "
+vim.api.nvim_create_autocmd("WinLeave", {
+    callback = function()
+        vim.wo.cursorline = false
+    end,
+})

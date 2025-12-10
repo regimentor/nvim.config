@@ -12,7 +12,13 @@ require('plugins.gitsigns')
 require('plugins.lualine')
 require('plugins.bufferline')
 require('plugins.copilot')
+require('plugins.smear-cursor')
+require('plugins.auto-session')
 
+---
+--- CUSTOM PLUGINS
+---
+require('custom_plugins.winbar')
 ---
 --- CONFIG
 ---
