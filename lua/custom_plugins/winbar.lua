@@ -2,6 +2,7 @@ vim.api.nvim_set_hl(0, "WinBarDiagnosticError", { fg = "#ff6c6b", bold = true })
 vim.api.nvim_set_hl(0, "WinBarDiagnosticWarn", { fg = "#ffb86c", bold = true })
 vim.api.nvim_set_hl(0, "WinBarDiagnosticInfo", { fg = "#7fdbff", bold = true })
 vim.api.nvim_set_hl(0, "WinBarDiagnosticHint", { fg = "#98be65", bold = true })
+vim.api.nvim_set_hl(0, "WinBarModified", { fg = "#ff6c6b", bold = true })
 
 local function update_winbar()
     local filepath = vim.fn.expand("%:p")
@@ -57,16 +58,20 @@ local function update_winbar()
 
     local winbar_str = "%#WinBar# " .. path_str
 
+    if vim.bo.modified then
+        winbar_str = winbar_str .. " %#WinBarModified#%#WinBar#"
+    end
+
     if error_count > 0 or warn_count > 0 or info_count > 0 or hint_count > 0 then
         winbar_str = winbar_str .. " | "
         if error_count > 0 then
-            winbar_str = winbar_str .. "%#WinBarDiagnosticError#󰅖 " .. error_count .. "%#WinBar# "
+            winbar_str = winbar_str .. "%#WinBarDiagnosticError#󰅚 " .. error_count .. "%#WinBar# "
         end
         if warn_count > 0 then
             winbar_str = winbar_str .. "%#WinBarDiagnosticWarn#󰀪 " .. warn_count .. "%#WinBar# "
         end
         if info_count > 0 then
-            winbar_str = winbar_str .. "%#WinBarDiagnosticInfo#󰋼 " .. info_count .. "%#WinBar# "
+            winbar_str = winbar_str .. "%#WinBarDiagnosticInfo#󰋽 " .. info_count .. "%#WinBar# "
         end
         if hint_count > 0 then
             winbar_str = winbar_str .. "%#WinBarDiagnosticHint#󰌶 " .. hint_count .. "%#WinBar# "
@@ -76,7 +81,7 @@ local function update_winbar()
     vim.wo.winbar = winbar_str
 end
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "DiagnosticChanged" }, {
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "DiagnosticChanged", "BufModifiedSet" }, {
     callback = update_winbar,
 })
 
