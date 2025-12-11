@@ -9,7 +9,11 @@ nvim version >= 0.12.0
 ## Install Dependencies
 
 ```shell 
-npm i -g vscode-langservers-extracted typescript-language-server typescript @prisma/language-server
+npm i -g cssmodules-language-server vscode-langservers-extracted typescript-language-server typescript @prisma/language-server
+```
+
+```shell
+brew install lua-language-server
 ```
 
 ## Structure
