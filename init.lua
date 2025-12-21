@@ -1,6 +1,7 @@
 ---
 --- PLUGINS
 ---
+require('plugins.plenary')
 require('plugins.treesitter')
 require('plugins.devicons')
 require('plugins.tree')
@@ -12,6 +13,7 @@ require('plugins.gitsigns')
 require('plugins.lualine')
 require('plugins.copilot')
 require('plugins.smear-cursor')
+require('plugins.harpoon')
 -- require('plugins.auto-session')
 
 ---

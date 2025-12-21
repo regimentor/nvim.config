@@ -194,10 +194,10 @@ return {
                     maxLength = 25,
                 },
                 -- Lifetime hints
-                lifetimeElisionHints = {
-                    enable = "always",
-                    useParameterNames = false,
-                },
+                -- lifetimeElisionHints = {
+                --     enable = "always",
+                --     useParameterNames = false,
+                -- },
                 -- Closure return type hints
                 closureReturnTypeHints = {
                     enable = "always",

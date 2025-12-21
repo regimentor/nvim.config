@@ -14,6 +14,12 @@ require("nvim-tree").setup({
     modified = {
         enable = true
     },
+    filters = {
+        dotfiles = false,
+    },
+    git = {
+        ignore = false,
+    },
     renderer = {
         group_empty = true,
         indent_width = 1,
