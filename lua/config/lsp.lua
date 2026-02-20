@@ -5,7 +5,8 @@ vim.lsp.enable({
     'eslint',
     'prismals',
     'cssmodules_ls',
-    'jsonls'
+    'jsonls',
+    'pyright',
 })
 
 vim.api.nvim_create_autocmd('BufEnter', {
