@@ -13,6 +13,9 @@ vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Unindent selection and keep sele
 -- Move lines up and down in visual mode
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down", silent = true })
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up", silent = true })
+-- macOS terminals often send literal characters (Option+j/k -> ∆/˚) instead of <A-j>/<A-k>
+vim.keymap.set("v", "∆", ":m '>+1<CR>gv=gv", { desc = "Move selection down (macOS)", silent = true })
+vim.keymap.set("v", "˚", ":m '<-2<CR>gv=gv", { desc = "Move selection up (macOS)", silent = true })
 
 
 -- ============================================================================
