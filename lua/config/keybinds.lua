@@ -45,6 +45,39 @@ end)
 vim.keymap.set('n', '<leader>fb', function()
     fzf_lua.buffers()
 end)
+
+-- ============================================================================
+-- Git
+-- ============================================================================
+local gitsigns = require('gitsigns')
+local function git_map(mode, lhs, rhs, desc)
+    vim.keymap.set(mode, lhs, rhs, { desc = desc, silent = true })
+end
+
+git_map('n', '<leader>hj', function()
+    gitsigns.nav_hunk('next')
+end, 'Git: next hunk')
+git_map('n', '<leader>hk', function()
+    gitsigns.nav_hunk('prev')
+end, 'Git: previous hunk')
+git_map('n', '<leader>hp', gitsigns.preview_hunk, 'Git: preview hunk')
+git_map('n', '<leader>hi', gitsigns.preview_hunk_inline, 'Git: preview hunk inline')
+git_map('n', '<leader>hs', gitsigns.stage_hunk, 'Git: stage hunk')
+git_map('n', '<leader>hr', gitsigns.reset_hunk, 'Git: reset hunk')
+git_map('v', '<leader>hs', function()
+    gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+end, 'Git: stage selected lines')
+git_map('v', '<leader>hr', function()
+    gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+end, 'Git: reset selected lines')
+git_map('n', '<leader>hS', gitsigns.stage_buffer, 'Git: stage buffer')
+git_map('n', '<leader>hu', gitsigns.undo_stage_hunk, 'Git: undo stage hunk')
+git_map('n', '<leader>hb', gitsigns.blame_line, 'Git: blame line')
+git_map('n', '<leader>hd', '<cmd>DiffviewOpen<CR>', 'Git: open inline diff view')
+git_map('n', '<leader>hf', '<cmd>DiffviewFileHistory %<CR>', 'Git: current file history')
+git_map('n', '<leader>hH', '<cmd>DiffviewFileHistory<CR>', 'Git: repository history')
+git_map('n', '<leader>hq', '<cmd>DiffviewClose<CR>', 'Git: close diff view')
+
 -- ============================================================================
 -- NvimTree
 -- ============================================================================

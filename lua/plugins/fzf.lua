@@ -16,3 +16,6 @@ require("fzf-lua").setup({
         },
     },
 })
+
+-- Used by lsp_code_actions() and other vim.ui.select callers
+require("fzf-lua").register_ui_select()

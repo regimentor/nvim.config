@@ -1,3 +1,6 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 ---
 --- PLUGINS
 ---
@@ -10,6 +13,7 @@ require('plugins.scroll-bar')
 require('plugins.fzf')
 require('plugins.conform')
 require('plugins.gitsigns')
+require('plugins.diffview')
 require('plugins.lualine')
 require('plugins.copilot')
 require('plugins.smear-cursor')

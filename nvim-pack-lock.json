@@ -20,6 +20,14 @@
       "rev": "a43b45423e8494898c353c0604e0b2e4e99bd056",
       "src": "https://github.com/scottmckendry/cyberdream.nvim"
     },
+    "diffview-plus.nvim": {
+      "rev": "30afab604a0abe02dfd19e6fbb9153fd26fd2eb3",
+      "src": "https://github.com/dlyongemallo/diffview-plus.nvim"
+    },
+    "diffview.nvim": {
+      "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
+      "src": "https://github.com/sindrets/diffview.nvim"
+    },
     "fzf-lua": {
       "rev": "43bda24f711e0c13428f16056002aebc20b38e04",
       "src": "https://github.com/ibhagwan/fzf-lua"
@@ -52,7 +60,7 @@
     "nvim-treesitter": {
       "rev": "42fc28ba918343ebfd5565147a42a26580579482",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
-      "version": "'master'"
+      "version": "'main'"
     },
     "nvim-web-devicons": {
       "rev": "8dcb311b0c92d460fac00eac706abd43d94d68af",
@@ -65,6 +73,10 @@
     "smear-cursor.nvim": {
       "rev": "c85bdbb25db096fbcf616bc4e1357bd61fe2c199",
       "src": "https://github.com/sphamba/smear-cursor.nvim"
+    },
+    "unified.nvim": {
+      "rev": "263bb56575bdbedcb7f5232ca809159012de1614",
+      "src": "https://github.com/axkirillov/unified.nvim"
     }
   }
 }
