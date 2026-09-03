@@ -7,6 +7,7 @@ vim.g.maplocalleader = "\\"
 require('plugins.plenary')
 require('plugins.treesitter')
 require('plugins.devicons')
+require('plugins.dashboard')
 require('plugins.tree')
 require('plugins.neoscroll')
 require('plugins.scroll-bar')
