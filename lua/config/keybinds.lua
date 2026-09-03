@@ -6,6 +6,8 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 
+vim.keymap.set("n", "<leader>n", "<cmd>tabnext<CR>", { desc = "Next tab" })
+vim.keymap.set("n", "<leader>p", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
 
 vim.keymap.set("v", "<Tab>", ">gv", { desc = "Indent selection and keep selection" })
 vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Unindent selection and keep selection" })
