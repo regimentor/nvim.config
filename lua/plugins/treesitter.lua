@@ -14,11 +14,19 @@ local parsers = {
     "rust",
     "javascript",
     "typescript",
+    "tsx",
+    "bash",
+    "qmljs",
     "prisma",
     "python",
 }
 
 local treesitter = require('nvim-treesitter')
+
+local function is_large_buffer(buf)
+    local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
+    return ok and stats and stats.size > 100 * 1024 -- 100 KB
+end
 
 treesitter.setup()
 
@@ -82,9 +90,7 @@ end
 vim.api.nvim_create_autocmd('FileType', {
     callback = function(args)
         local buf = args.buf
-        local max_filesize = 100 * 1024 -- 100 KB
-        local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
-        if ok and stats and stats.size > max_filesize then
+        if is_large_buffer(buf) then
             return
         end
         local parser = vim.treesitter.language.get_lang(vim.bo[buf].filetype)

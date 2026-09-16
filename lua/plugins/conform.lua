@@ -11,7 +11,23 @@ require("conform").setup({
         -- You can also customize some of the format options for the filetype
         rust = { "rustfmt", lsp_format = "fallback" },
 
-        typescript = { "prettier", lsp_format = "fallback" },
+        javascript = { "oxfmt", "prettier", stop_after_first = true },
+        javascriptreact = { "oxfmt", "prettier", stop_after_first = true },
+        typescript = { "oxfmt", "prettier", stop_after_first = true },
+        typescriptreact = { "oxfmt", "prettier", stop_after_first = true },
+        sh = { "shfmt" },
+        bash = { "shfmt" },
+        qml = { "qmlformat" },
+        qmljs = { "qmlformat" },
+    },
+    formatters = {
+        -- Older installed Conform versions do not include oxfmt yet.
+        oxfmt = {
+            command = require("conform.util").from_node_modules("oxfmt"),
+            args = { "--stdin-filepath", "$FILENAME" },
+            stdin = true,
+            cwd = require("conform.util").root_file({ ".oxfmtrc.json", ".oxfmtrc.jsonc", "oxfmt.config.ts", "package.json" }),
+        },
     },
     -- Set this to change the default values when calling conform.format()
     -- This will also affect the default values for format_on_save/format_after_save

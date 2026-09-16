@@ -5,6 +5,7 @@ vim.g.maplocalleader = "\\"
 --- PLUGINS
 ---
 require('plugins.plenary')
+require('plugins.coverage')
 require('plugins.treesitter')
 require('plugins.devicons')
 require('plugins.dashboard')

@@ -1,7 +1,10 @@
 vim.lsp.enable({
     'lua_ls',
     'rust_analyzer',
-    'ts_ls',
+    'vtsls',
+    'oxlint',
+    'bashls',
+    'qmlls',
     'eslint',
     'prismals',
     'cssmodules_ls',
