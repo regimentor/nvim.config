@@ -3,6 +3,8 @@ vim.pack.add({
 })
 
 require("snacks").setup({
+    -- fff handles files and grep; Snacks handles buffers, LSP and code actions.
+    picker = { enabled = true, ui_select = true },
     dashboard = {
         enabled = true,
         preset = {
@@ -53,6 +55,9 @@ require("snacks").setup({
         },
     },
 })
+
+-- vim.pack may load Snacks after UIEnter; register vim.ui.select immediately.
+Snacks.picker.setup()
 
 -- Treat `nvim .` like a project start instead of letting nvim-tree replace
 -- the initial buffer. Opening nvim-tree explicitly still works via <leader>e.

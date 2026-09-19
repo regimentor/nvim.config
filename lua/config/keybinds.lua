@@ -35,18 +35,17 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 -- See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
 -- ============================================================================
--- fzf plugin
+-- Search
 -- ============================================================================
-local fzf_lua = require("fzf-lua")
 vim.keymap.set('n', '<leader>ff', function()
-    fzf_lua.files()
-end)
+    require('fff').find_files()
+end, { desc = 'Find files' })
 vim.keymap.set('n', '<leader>fg', function()
-    fzf_lua.live_grep()
-end)
+    require('fff').live_grep()
+end, { desc = 'Find text' })
 vim.keymap.set('n', '<leader>fb', function()
-    fzf_lua.buffers()
-end)
+    Snacks.picker.buffers()
+end, { desc = 'Find buffers' })
 
 -- ============================================================================
 -- Git

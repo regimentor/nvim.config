@@ -52,6 +52,22 @@ for the installed 1.x release, with a Lua fallback if unavailable.
 Copilot uses `Alt-Enter` to accept and `Alt-K` to accept the next line;
 `Ctrl-N` / `Ctrl-P` still cycle its suggestions. Command-line completion is unchanged.
 
+## Search
+
+[fff](https://github.com/dmtrKovalenko/fff) provides file and content search:
+
+- `<leader>ff`: find files.
+- `<leader>fg`: live grep (`Shift-Tab` switches grep modes).
+- `<leader>fb`: open buffers via Snacks Picker.
+
+The existing LSP navigation, symbols and diagnostics mappings use Snacks Picker.
+`ga` uses native LSP code actions with Snacks providing `vim.ui.select`.
+Dashboard search shortcuts use fff as well.
+
+The `vim.pack` install/update hook downloads fff's native binary using `curl`,
+falling back to a Rust build (`rustup` and `cargo`) if necessary. Wait for it to
+finish before opening a picker. Use `:FFFHealth` to check the installation.
+
 ## Structure
 
 - `lua/plugins/` - plugins

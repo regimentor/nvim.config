@@ -21,7 +21,7 @@ require("cyberdream").setup({
     -- Replace all fillchars with ' ' for the ultimate clean look
     hide_fillchars = true,
 
-    -- Apply a modern borderless look to pickers like Telescope, Snacks Picker & Fzf-Lua
+    -- Apply a modern borderless look to supported pickers
     borderless_pickers = false,
 
     -- Set terminal colors used in `:terminal`

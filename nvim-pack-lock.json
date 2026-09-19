@@ -33,9 +33,9 @@
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
       "src": "https://github.com/sindrets/diffview.nvim"
     },
-    "fzf-lua": {
-      "rev": "43bda24f711e0c13428f16056002aebc20b38e04",
-      "src": "https://github.com/ibhagwan/fzf-lua"
+    "fff": {
+      "rev": "6b46693c8c6442877a3ee078955d0c36eaff4625",
+      "src": "https://github.com/dmtrKovalenko/fff"
     },
     "gitsigns.nvim": {
       "rev": "5813e4878748805f1518cee7abb50fd7205a3a48",
