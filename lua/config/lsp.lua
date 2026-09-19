@@ -1,3 +1,7 @@
+vim.lsp.config('*', {
+    capabilities = require('blink.cmp').get_lsp_capabilities(),
+})
+
 vim.lsp.enable({
     'lua_ls',
     'rust_analyzer',
@@ -21,7 +25,6 @@ vim.api.nvim_create_autocmd('BufEnter', {
 
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(ev)
-        local client = vim.lsp.get_client_by_id(ev.data.client_id)
         vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
         local opts = { buffer = ev.buf, silent = true }
         -- ============================================================================
@@ -79,15 +82,5 @@ vim.api.nvim_create_autocmd('LspAttach', {
             fzf_lua.lsp_workspace_symbols()
         end, vim.tbl_extend("force", opts, { desc = "Show workspace Symbols" }))
 
-        -- ============================================================================
-        -- completion
-        -- ============================================================================
-        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
-            vim.opt.completeopt = { 'menu', 'menuone', 'noinsert', 'fuzzy', 'popup' }
-            vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-            vim.keymap.set('i', '<C-o>', function()
-                vim.lsp.completion.get()
-            end)
-        end
     end,
 })

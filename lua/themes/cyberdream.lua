@@ -10,7 +10,7 @@ require("cyberdream").setup({
     variant = "default", -- use "light" for the light variant. Also accepts "auto" to set dark or light colors based on the current value of `vim.o.background`
 
     -- Use an opaque background
-    transparent = false,
+    transparent = true,
 
     -- Reduce the overall saturation of colours for a more muted look
     saturation = 1, -- accepts a value between 0 and 1. 0 will be fully desaturated (greyscale) and 1 will be the full color (default)
@@ -56,12 +56,12 @@ require("cyberdream").setup({
         -- For a list of colors see `lua/cyberdream/colours.lua`
 
         -- Override colors for both light and dark variants
-        bg = "#000000",
+        -- bg = "#000000",
         green = "#00ff00",
 
         -- If you want to override colors for light or dark variants only, use the following format:
         dark = {
-            bg = "#16181a",
+            -- bg = "#16181a",
             bg_alt = "#1e2124",
             bg_highlight = "#3c4048",
             fg = "#ffffff",

@@ -14,7 +14,7 @@ vim.g.copilot_filetypes = {
 }
 
 -- Accept suggestion
-vim.keymap.set("i", "<C-j>", 'copilot#Accept("\\<CR>")', {
+vim.keymap.set("i", "<M-CR>", 'copilot#Accept("\\<CR>")', {
     expr = true,
     replace_keycodes = false,
     desc = "Accept Copilot suggestion",
@@ -46,6 +46,6 @@ vim.keymap.set("i", "<C-l>", "<Plug>(copilot-accept-word)", {
 })
 
 -- Accept next line
-vim.keymap.set("i", "<C-k>", "<Plug>(copilot-accept-line)", {
+vim.keymap.set("i", "<M-k>", "<Plug>(copilot-accept-line)", {
     desc = "Accept next line of Copilot suggestion",
 })

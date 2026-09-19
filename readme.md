@@ -37,6 +37,21 @@ brew install lua-language-server
 
 Check language servers with `:checkhealth vim.lsp` and formatters with `:ConformInfo`.
 
+## Completion
+
+`blink.cmp` provides automatic completion from LSP, paths, snippets, and buffer words.
+It uses Neovim's built-in snippet engine and downloads a prebuilt fuzzy matcher
+for the installed 1.x release, with a Lua fallback if unavailable.
+
+- `Ctrl-O` / `Ctrl-Space`: open completion or toggle documentation.
+- `Ctrl-J` / `Ctrl-K`: select the next / previous suggestion.
+- `Enter`: accept; `Escape`: close the menu (or leave Insert mode when it is closed).
+- `Ctrl-B` / `Ctrl-F`: scroll documentation.
+- `Ctrl-S` / `Ctrl-H`: jump to the next / previous snippet placeholder.
+
+Copilot uses `Alt-Enter` to accept and `Alt-K` to accept the next line;
+`Ctrl-N` / `Ctrl-P` still cycle its suggestions. Command-line completion is unchanged.
+
 ## Structure
 
 - `lua/plugins/` - plugins
