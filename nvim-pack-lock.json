@@ -50,10 +50,6 @@
       "rev": "47f91c416daef12db467145e16bed5bbfe00add8",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
-    "neoscroll.nvim": {
-      "rev": "f957373912e88579e26fdaea4735450ff2ef5c9c",
-      "src": "https://github.com/karb94/neoscroll.nvim"
-    },
     "nvim-coverage": {
       "rev": "a939e425e363319d952a6c35fb3f38b34041ded2",
       "src": "https://github.com/andythigpen/nvim-coverage"
@@ -61,10 +57,6 @@
     "nvim-scrollbar": {
       "rev": "f8e87b96cd6362ef8579be456afee3b38fd7e2a8",
       "src": "https://github.com/petertriho/nvim-scrollbar"
-    },
-    "nvim-tree.lua": {
-      "rev": "59088b96a32ea47caf4976e164dbd88b86447fb7",
-      "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
       "rev": "5cb0114e6242625db56dd6440e945ed1ece10bc7",

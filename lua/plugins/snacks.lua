@@ -4,7 +4,25 @@ vim.pack.add({
 
 require("snacks").setup({
     -- fff handles files and grep; Snacks handles buffers, LSP and code actions.
-    picker = { enabled = true, ui_select = true },
+    picker = {
+        enabled = true,
+        ui_select = true,
+        sources = {
+            explorer = {
+                hidden = true,
+                ignored = true,
+                layout = { preset = 'sidebar', layout = { width = 35 } },
+            },
+        },
+    },
+    -- Keep `nvim .` opening the project dashboard.
+    explorer = { enabled = true, diagnostic = true, replace_netrw = false, git_status = true },
+    scroll = { enabled = true },
+    input = { enabled = true },
+    notifier = { enabled = true },
+    terminal = { enabled = true },
+    bigfile = { enabled = true },
+    words = { enabled = true },
     dashboard = {
         enabled = true,
         preset = {
@@ -25,7 +43,7 @@ require("snacks").setup({
                     icon = " ",
                     key = "e",
                     desc = "File explorer",
-                    action = ":NvimTreeFocus",
+                    action = "<leader>e",
                 },
                 {
                     icon = " ",
@@ -43,7 +61,7 @@ require("snacks").setup({
         },
         sections = {
             { section = "header" },
-            { section = "keys", gap = 1, padding = 1 },
+            { section = "keys",  gap = 1, padding = 1 },
             {
                 icon = " ",
                 title = "Recent files",
@@ -56,11 +74,12 @@ require("snacks").setup({
     },
 })
 
--- vim.pack may load Snacks after UIEnter; register vim.ui.select immediately.
+-- vim.pack may load Snacks after UIEnter; initialize its UI integrations now.
 Snacks.picker.setup()
+Snacks.input.enable()
+Snacks.scroll.enable()
 
--- Treat `nvim .` like a project start instead of letting nvim-tree replace
--- the initial buffer. Opening nvim-tree explicitly still works via <leader>e.
+-- Treat `nvim .` like a project start. Open the explorer via <leader>e.
 vim.api.nvim_create_autocmd("BufEnter", {
     group = vim.api.nvim_create_augroup("project_dashboard", { clear = true }),
     once = true,

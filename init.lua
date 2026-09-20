@@ -6,13 +6,11 @@ vim.g.maplocalleader = "\\"
 ---
 -- Register the binary install hook before vim.pack restores the lockfile.
 require('plugins.fff')
+require('plugins.snacks')
 require('plugins.plenary')
 require('plugins.coverage')
 require('plugins.treesitter')
 require('plugins.devicons')
-require('plugins.dashboard')
-require('plugins.tree')
-require('plugins.neoscroll')
 require('plugins.scroll-bar')
 require('plugins.conform')
 require('plugins.gitsigns')

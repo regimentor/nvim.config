@@ -1,5 +1,6 @@
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save" })
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
+vim.keymap.set("n", "Q", "<cmd>qall!<CR>", { desc = "Quit" })
 -- Перемещение по сплитам
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
@@ -80,9 +81,30 @@ git_map('n', '<leader>hH', '<cmd>DiffviewFileHistory<CR>', 'Git: repository hist
 git_map('n', '<leader>hq', '<cmd>DiffviewClose<CR>', 'Git: close diff view')
 
 -- ============================================================================
--- NvimTree
+-- Snacks
 -- ============================================================================
-vim.keymap.set("n", "<leader>e", ":NvimTreeFocus<CR>", { desc = "Exit terminal mode" })
+vim.keymap.set('n', '<leader>e', function()
+    local explorer = Snacks.picker.get({ source = 'explorer' })[1]
+    if explorer then
+        explorer:set_cwd(vim.fn.getcwd())
+        explorer:focus()
+    else
+        Snacks.explorer()
+    end
+end, { desc = 'Focus file explorer' })
+vim.keymap.set({ 'n', 't' }, '<C-/>', function()
+    Snacks.terminal.toggle()
+end, { desc = 'Toggle terminal' })
+-- Many terminals encode Ctrl-/ as Ctrl-_ instead.
+vim.keymap.set({ 'n', 't' }, '<C-_>', function()
+    Snacks.terminal.toggle()
+end, { desc = 'Toggle terminal' })
+vim.keymap.set('n', '<leader>bd', function()
+    Snacks.bufdelete()
+end, { desc = 'Delete buffer (keep splits)' })
+vim.keymap.set('n', '<leader>un', function()
+    Snacks.notifier.show_history()
+end, { desc = 'Notification history' })
 
 -- ============================================================================
 -- Harpoon

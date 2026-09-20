@@ -68,6 +68,23 @@ The `vim.pack` install/update hook downloads fff's native binary using `curl`,
 falling back to a Rust build (`rustup` and `cargo`) if necessary. Wait for it to
 finish before opening a picker. Use `:FFFHealth` to check the installation.
 
+## Snacks UI
+
+`lua/plugins/snacks.lua` configures the dashboard, pickers, file explorer,
+smooth scrolling, input dialogs, notifications, terminal, large-file handling,
+and automatic LSP reference highlighting (when supported by the server).
+
+- `<leader>e`: open or focus the explorer (35 columns; hidden and ignored files visible).
+- `Ctrl-/` (or `Ctrl-_`): toggle the terminal in Normal or Terminal mode.
+- `<leader>bd`: delete the buffer while preserving splits; modified buffers prompt before closing.
+- `<leader>un`: notification history.
+- `gr`: LSP rename, now with a floating input dialog.
+
+In the explorer, `a` adds a file/directory, `r` renames, `d` deletes,
+`H` toggles hidden files, and `I` toggles ignored files.
+`nvim .` still opens the project dashboard; press `e` to open the explorer.
+Files over 1.5 MB or with very long average lines use Snacks' `bigfile` mode.
+
 ## Structure
 
 - `lua/plugins/` - plugins

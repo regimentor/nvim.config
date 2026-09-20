@@ -13,6 +13,10 @@ vim.api.nvim_create_autocmd('PackChanged', {
 
 vim.g.fff = {
     lazy_sync = true,
+    keymaps = {
+        move_up = { '<Up>', '<C-p>', '<C-k>' },
+        move_down = { '<Down>', '<C-n>', '<C-j>' },
+    },
     layout = {
         height = 0.85,
         width = 0.85,
