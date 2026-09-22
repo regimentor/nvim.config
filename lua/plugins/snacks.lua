@@ -3,6 +3,7 @@ vim.pack.add({
 })
 
 require("snacks").setup({
+    image = { enabled = true },
     -- fff handles files and grep; Snacks handles buffers, LSP and code actions.
     picker = {
         enabled = true,
