@@ -6,6 +6,7 @@ vim.g.maplocalleader = "\\"
 ---
 -- Register the binary install hook before vim.pack restores the lockfile.
 require('plugins.fff')
+require('plugins.langmapper')
 require('plugins.snacks')
 require('plugins.plenary')
 require('plugins.coverage')
@@ -41,3 +42,4 @@ require('config.diagnostic')
 require('themes.cyberdream')
 
 vim.cmd("colorscheme cyberdream")
+require('langmapper').automapping({ buffer = false })
