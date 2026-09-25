@@ -4,6 +4,8 @@ vim.pack.add({
 
 local parsers = {
     "c",
+    "c_sharp",
+    "gdscript",
     "lua",
     "vim",
     "vimdoc",

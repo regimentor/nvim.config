@@ -1,0 +1,8 @@
+-- Godot must have this project open with its language server enabled.
+---@type vim.lsp.Config
+return {
+    cmd = vim.lsp.rpc.connect('127.0.0.1', tonumber(vim.env.GDScript_Port) or 6005),
+    filetypes = { 'gdscript' },
+    root_markers = { 'project.godot' },
+    workspace_required = true,
+}

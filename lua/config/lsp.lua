@@ -14,6 +14,8 @@ vim.lsp.enable({
     'cssmodules_ls',
     'jsonls',
     'pyright',
+    'csharp_ls',
+    'gdscript',
 })
 
 vim.api.nvim_create_autocmd('BufEnter', {

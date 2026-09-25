@@ -12,6 +12,11 @@ require("snacks").setup({
             explorer = {
                 hidden = true,
                 ignored = true,
+                -- Hidden paths keep their normal colors; only Git-ignored paths are dimmed.
+                format = function(item, picker)
+                    item.filename_hl = item.dir and "SnacksPickerDirectory" or "SnacksPickerFile"
+                    return Snacks.picker.format.file(item, picker)
+                end,
                 layout = { preset = 'sidebar', layout = { width = 35 } },
             },
         },

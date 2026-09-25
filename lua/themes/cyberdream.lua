@@ -45,6 +45,18 @@ require("cyberdream").setup({
     overrides = function(colors) -- NOTE: This function nullifies the `highlights` option
         -- Example:
         return {
+            -- Keep Git states distinct; grey is reserved for ignored paths.
+            SnacksPickerGitStatus = { fg = colors.blue },
+            SnacksPickerGitStatusAdded = { fg = colors.green },
+            SnacksPickerGitStatusUntracked = { fg = colors.green },
+            SnacksPickerGitStatusModified = { fg = colors.yellow },
+            SnacksPickerGitStatusDeleted = { fg = colors.red },
+            SnacksPickerGitStatusRenamed = { fg = colors.blue },
+            SnacksPickerGitStatusCopied = { fg = colors.purple },
+            SnacksPickerGitStatusStaged = { fg = colors.cyan },
+            SnacksPickerGitStatusUnmerged = { fg = colors.orange, bold = true },
+            SnacksPickerGitStatusIgnored = { fg = colors.grey },
+            SnacksPickerPathIgnored = { fg = colors.grey },
             -- Comment = { fg = colors.green, bg = "NONE", italic = true },
             -- ["@property"] = { fg = colors.magenta, bold = true },
             -- ["@string.rust"] = { fg = colors.magenta, bg = "NONE", underline = true },
