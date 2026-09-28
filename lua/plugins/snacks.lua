@@ -14,7 +14,19 @@ require("snacks").setup({
                 ignored = true,
                 -- Hidden paths keep their normal colors; only Git-ignored paths are dimmed.
                 format = function(item, picker)
-                    item.filename_hl = item.dir and "SnacksPickerDirectory" or "SnacksPickerFile"
+                    -- Explorer can inherit a directory status for its children. Use the
+                    -- file's own status, except for wholly untracked/ignored directories.
+                    if not item.dir then
+                        local node = require("snacks.explorer.tree"):node(item.file)
+                        item.status = node and node.status or nil
+                        if not item.status and item.parent then
+                            local status = item.parent.dir_status
+                            if status == "??" or status == "!!" then
+                                item.status = status
+                            end
+                        end
+                    end
+                    item.filename_hl = nil
                     return Snacks.picker.format.file(item, picker)
                 end,
                 layout = { preset = 'sidebar', layout = { width = 35 } },

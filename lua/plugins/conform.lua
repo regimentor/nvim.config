@@ -10,6 +10,8 @@ require("conform").setup({
         go = { "goimports", "gofmt" },
         -- You can also customize some of the format options for the filetype
         rust = { "rustfmt", lsp_format = "fallback" },
+        c = { "clang_format", lsp_format = "fallback" },
+        cpp = { "clang_format", lsp_format = "fallback" },
         cs = { lsp_format = "fallback" },
         gdscript = { "gdformat", lsp_format = "fallback" },
 

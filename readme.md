@@ -37,6 +37,14 @@ brew install lua-language-server
 
 Check language servers with `:checkhealth vim.lsp` and formatters with `:ConformInfo`.
 
+## C++
+
+Install `clangd` for diagnostics, completion and navigation, and `clang-format`
+for formatting on save. The C++ Tree-sitter parser installs automatically.
+For accurate project diagnostics, generate a `compile_commands.json` database
+in the project root. Use a project `.clangd` file for additional compile flags.
+Without a database, `clangd` uses fallback compiler flags.
+
 ## Completion
 
 `blink.cmp` provides automatic completion from LSP, paths, snippets, and buffer words.

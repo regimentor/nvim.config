@@ -48,7 +48,7 @@ require("cyberdream").setup({
             -- Keep Git states distinct; grey is reserved for ignored paths.
             SnacksPickerGitStatus = { fg = colors.blue },
             SnacksPickerGitStatusAdded = { fg = colors.green },
-            SnacksPickerGitStatusUntracked = { fg = colors.green },
+            SnacksPickerGitStatusUntracked = { fg = colors.red },
             SnacksPickerGitStatusModified = { fg = colors.yellow },
             SnacksPickerGitStatusDeleted = { fg = colors.red },
             SnacksPickerGitStatusRenamed = { fg = colors.blue },
