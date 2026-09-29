@@ -45,6 +45,26 @@ For accurate project diagnostics, generate a `compile_commands.json` database
 in the project root. Use a project `.clangd` file for additional compile flags.
 Without a database, `clangd` uses fallback compiler flags.
 
+## Markdown reading
+
+Markdown is rendered inside Neovim by `render-markdown.nvim`. In a `.md` file,
+press `<leader>mr` to toggle a centered Snacks Zen reading window with wrapped
+lines and no line numbers. The cursor line stays rendered in Normal mode;
+Insert mode shows the Markdown source for editing.
+Use `:RenderMarkdown toggle` to toggle rendering independently.
+Press `<leader>mt` on a task line (`- [ ]` or `- [x]`) to toggle its checkbox.
+Press `gf` with the cursor anywhere on a local `[label](path.md#heading)` or
+`[[path.md#heading]]` link to open its target. Paths are relative to the current
+file; paths starting with `/` are relative to the project root (`.git` or
+`.marksman.toml`). When the cursor is not on a Markdown link, `gf` keeps its
+usual behavior.
+
+For LSP completion, references, and `gd` navigation across Markdown files,
+install [Marksman](https://github.com/artempyanykh/marksman/blob/main/docs/install.md)
+and ensure `marksman` is on `PATH`. A Git repository or `.marksman.toml` at the
+project root enables its multi-file mode. Check attachment with
+`:checkhealth vim.lsp` after opening a Markdown file.
+
 ## Completion
 
 `blink.cmp` provides automatic completion from LSP, paths, snippets, and buffer words.

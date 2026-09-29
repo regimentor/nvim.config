@@ -17,6 +17,7 @@ vim.lsp.enable({
     'pyright',
     'csharp_ls',
     'gdscript',
+    'marksman',
 })
 
 vim.api.nvim_create_autocmd('BufEnter', {

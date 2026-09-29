@@ -106,6 +106,49 @@ vim.keymap.set('n', '<leader>un', function()
     Snacks.notifier.show_history()
 end, { desc = 'Notification history' })
 
+vim.keymap.set('n', '<leader>mr', function()
+    if vim.bo.filetype ~= 'markdown' then
+        vim.notify('Markdown reading mode is available in .md files', vim.log.levels.INFO)
+        return
+    end
+    Snacks.zen({
+        center = true,
+        win = {
+            width = 100,
+            wo = {
+                wrap = true,
+                linebreak = true,
+                number = false,
+                relativenumber = false,
+                list = false,
+                signcolumn = 'no',
+                foldcolumn = '0',
+                winbar = '',
+            },
+        },
+    })
+end, { desc = 'Markdown: toggle reading mode' })
+
+vim.keymap.set('n', '<leader>mt', function()
+    if vim.bo.filetype ~= 'markdown' then
+        vim.notify('Task toggling is available in Markdown files', vim.log.levels.INFO)
+        return
+    end
+
+    local row = vim.api.nvim_win_get_cursor(0)[1] - 1
+    local line = vim.api.nvim_buf_get_lines(0, row, row + 1, false)[1]
+    local _, last, state = line:find('^%s*[-*+]%s+%[([ xX])%]')
+    if not last then
+        _, last, state = line:find('^%s*%d+[.)]%s+%[([ xX])%]')
+    end
+    if not last then
+        vim.notify('No Markdown task on the current line', vim.log.levels.INFO)
+        return
+    end
+
+    vim.api.nvim_buf_set_text(0, row, last - 2, row, last - 1, { state == ' ' and 'x' or ' ' })
+end, { desc = 'Markdown: toggle task' })
+
 -- ============================================================================
 -- Harpoon
 -- ============================================================================

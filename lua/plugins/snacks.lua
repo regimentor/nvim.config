@@ -26,7 +26,9 @@ require("snacks").setup({
                             end
                         end
                     end
-                    item.filename_hl = nil
+                    -- Hidden names (including hidden parents) use the normal
+                    -- file/directory color; Git status still overrides this.
+                    item.filename_hl = item.dir and "SnacksPickerDirectory" or "SnacksPickerFile"
                     return Snacks.picker.format.file(item, picker)
                 end,
                 layout = { preset = 'sidebar', layout = { width = 35 } },
@@ -41,6 +43,7 @@ require("snacks").setup({
     terminal = { enabled = true },
     bigfile = { enabled = true },
     words = { enabled = true },
+    zen = { enabled = true },
     dashboard = {
         enabled = true,
         preset = {
