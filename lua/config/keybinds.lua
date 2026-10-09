@@ -1,5 +1,6 @@
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save" })
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
+vim.keymap.set("n", "Q", "<cmd>qall!<CR>", { desc = "Quit" })
 -- Перемещение по сплитам
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
@@ -35,18 +36,17 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 -- See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
 -- ============================================================================
--- fzf plugin
+-- Search
 -- ============================================================================
-local fzf_lua = require("fzf-lua")
 vim.keymap.set('n', '<leader>ff', function()
-    fzf_lua.files()
-end)
+    require('fff').find_files()
+end, { desc = 'Find files' })
 vim.keymap.set('n', '<leader>fg', function()
-    fzf_lua.live_grep()
-end)
+    require('fff').live_grep()
+end, { desc = 'Find text' })
 vim.keymap.set('n', '<leader>fb', function()
-    fzf_lua.buffers()
-end)
+    Snacks.picker.buffers()
+end, { desc = 'Find buffers' })
 
 -- ============================================================================
 -- Git
@@ -81,9 +81,73 @@ git_map('n', '<leader>hH', '<cmd>DiffviewFileHistory<CR>', 'Git: repository hist
 git_map('n', '<leader>hq', '<cmd>DiffviewClose<CR>', 'Git: close diff view')
 
 -- ============================================================================
--- NvimTree
+-- Snacks
 -- ============================================================================
-vim.keymap.set("n", "<leader>e", ":NvimTreeFocus<CR>", { desc = "Exit terminal mode" })
+vim.keymap.set('n', '<leader>e', function()
+    local explorer = Snacks.picker.get({ source = 'explorer' })[1]
+    if explorer then
+        explorer:set_cwd(vim.fn.getcwd())
+        explorer:focus()
+    else
+        Snacks.explorer()
+    end
+end, { desc = 'Focus file explorer' })
+vim.keymap.set({ 'n', 't' }, '<C-/>', function()
+    Snacks.terminal.toggle()
+end, { desc = 'Toggle terminal' })
+-- Many terminals encode Ctrl-/ as Ctrl-_ instead.
+vim.keymap.set({ 'n', 't' }, '<C-_>', function()
+    Snacks.terminal.toggle()
+end, { desc = 'Toggle terminal' })
+vim.keymap.set('n', '<leader>bd', function()
+    Snacks.bufdelete()
+end, { desc = 'Delete buffer (keep splits)' })
+vim.keymap.set('n', '<leader>un', function()
+    Snacks.notifier.show_history()
+end, { desc = 'Notification history' })
+
+vim.keymap.set('n', '<leader>mr', function()
+    if vim.bo.filetype ~= 'markdown' then
+        vim.notify('Markdown reading mode is available in .md files', vim.log.levels.INFO)
+        return
+    end
+    Snacks.zen({
+        center = true,
+        win = {
+            width = 100,
+            wo = {
+                wrap = true,
+                linebreak = true,
+                number = false,
+                relativenumber = false,
+                list = false,
+                signcolumn = 'no',
+                foldcolumn = '0',
+                winbar = '',
+            },
+        },
+    })
+end, { desc = 'Markdown: toggle reading mode' })
+
+vim.keymap.set('n', '<leader>mt', function()
+    if vim.bo.filetype ~= 'markdown' then
+        vim.notify('Task toggling is available in Markdown files', vim.log.levels.INFO)
+        return
+    end
+
+    local row = vim.api.nvim_win_get_cursor(0)[1] - 1
+    local line = vim.api.nvim_buf_get_lines(0, row, row + 1, false)[1]
+    local _, last, state = line:find('^%s*[-*+]%s+%[([ xX])%]')
+    if not last then
+        _, last, state = line:find('^%s*%d+[.)]%s+%[([ xX])%]')
+    end
+    if not last then
+        vim.notify('No Markdown task on the current line', vim.log.levels.INFO)
+        return
+    end
+
+    vim.api.nvim_buf_set_text(0, row, last - 2, row, last - 1, { state == ' ' and 'x' or ' ' })
+end, { desc = 'Markdown: toggle task' })
 
 -- ============================================================================
 -- Harpoon
@@ -92,10 +156,11 @@ local harpoon = require("harpoon")
 vim.keymap.set("n", "<leader>t", function() harpoon:list():add() end)
 vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
--- vim.keymap.set("n", "<C-h>", function() harpoon:list():select(1) end)
--- vim.keymap.set("n", "<C-t>", function() harpoon:list():select(2) end)
--- vim.keymap.set("n", "<C-n>", function() harpoon:list():select(3) end)
--- vim.keymap.set("n", "<C-s>", function() harpoon:list():select(4) end)
+for index = 1, 4 do
+    vim.keymap.set("n", "<leader>" .. index, function()
+        harpoon:list():select(index)
+    end, { desc = "Harpoon: select file " .. index, silent = true })
+end
 
 -- Toggle previous & next buffers stored within Harpoon list
 -- vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)

@@ -4,19 +4,22 @@ vim.g.maplocalleader = "\\"
 ---
 --- PLUGINS
 ---
+-- Register the binary install hook before vim.pack restores the lockfile.
+require('plugins.fff')
+require('plugins.langmapper')
+require('plugins.snacks')
 require('plugins.plenary')
+require('plugins.coverage')
 require('plugins.treesitter')
 require('plugins.devicons')
-require('plugins.dashboard')
-require('plugins.tree')
-require('plugins.neoscroll')
+require('plugins.render-markdown')
 require('plugins.scroll-bar')
-require('plugins.fzf')
 require('plugins.conform')
 require('plugins.gitsigns')
 require('plugins.diffview')
 require('plugins.lualine')
 require('plugins.copilot')
+require('plugins.blink')
 require('plugins.smear-cursor')
 require('plugins.harpoon')
 -- require('plugins.auto-session')
@@ -30,6 +33,7 @@ require('custom_plugins.winbar')
 ---
 require('config.options')
 require('config.keybinds')
+require('config.markdown_links')
 require('config.lsp')
 require('config.diagnostic')
 
@@ -40,3 +44,4 @@ require('config.diagnostic')
 require('themes.cyberdream')
 
 vim.cmd("colorscheme cyberdream")
+require('langmapper').automapping({ buffer = false })

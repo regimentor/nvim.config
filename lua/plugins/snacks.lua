@@ -3,6 +3,47 @@ vim.pack.add({
 })
 
 require("snacks").setup({
+    image = { enabled = true },
+    -- fff handles files and grep; Snacks handles buffers, LSP and code actions.
+    picker = {
+        enabled = true,
+        ui_select = true,
+        sources = {
+            explorer = {
+                hidden = true,
+                ignored = true,
+                -- Hidden paths keep their normal colors; only Git-ignored paths are dimmed.
+                format = function(item, picker)
+                    -- Explorer can inherit a directory status for its children. Use the
+                    -- file's own status, except for wholly untracked/ignored directories.
+                    if not item.dir then
+                        local node = require("snacks.explorer.tree"):node(item.file)
+                        item.status = node and node.status or nil
+                        if not item.status and item.parent then
+                            local status = item.parent.dir_status
+                            if status == "??" or status == "!!" then
+                                item.status = status
+                            end
+                        end
+                    end
+                    -- Hidden names (including hidden parents) use the normal
+                    -- file/directory color; Git status still overrides this.
+                    item.filename_hl = item.dir and "SnacksPickerDirectory" or "SnacksPickerFile"
+                    return Snacks.picker.format.file(item, picker)
+                end,
+                layout = { preset = 'sidebar', layout = { width = 35 } },
+            },
+        },
+    },
+    -- Keep `nvim .` opening the project dashboard.
+    explorer = { enabled = true, diagnostic = true, replace_netrw = false, git_status = true },
+    scroll = { enabled = true },
+    input = { enabled = true },
+    notifier = { enabled = true },
+    terminal = { enabled = true },
+    bigfile = { enabled = true },
+    words = { enabled = true },
+    zen = { enabled = true },
     dashboard = {
         enabled = true,
         preset = {
@@ -23,7 +64,7 @@ require("snacks").setup({
                     icon = " ",
                     key = "e",
                     desc = "File explorer",
-                    action = ":NvimTreeFocus",
+                    action = "<leader>e",
                 },
                 {
                     icon = " ",
@@ -41,7 +82,7 @@ require("snacks").setup({
         },
         sections = {
             { section = "header" },
-            { section = "keys", gap = 1, padding = 1 },
+            { section = "keys",  gap = 1, padding = 1 },
             {
                 icon = " ",
                 title = "Recent files",
@@ -54,8 +95,12 @@ require("snacks").setup({
     },
 })
 
--- Treat `nvim .` like a project start instead of letting nvim-tree replace
--- the initial buffer. Opening nvim-tree explicitly still works via <leader>e.
+-- vim.pack may load Snacks after UIEnter; initialize its UI integrations now.
+Snacks.picker.setup()
+Snacks.input.enable()
+Snacks.scroll.enable()
+
+-- Treat `nvim .` like a project start. Open the explorer via <leader>e.
 vim.api.nvim_create_autocmd("BufEnter", {
     group = vim.api.nvim_create_augroup("project_dashboard", { clear = true }),
     once = true,

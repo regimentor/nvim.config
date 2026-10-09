@@ -3,11 +3,13 @@ vim.pack.add({
 })
 
 
+vim.opt.background = "dark"
+
 require("cyberdream").setup({
     -- Set light or dark variant
     variant = "default", -- use "light" for the light variant. Also accepts "auto" to set dark or light colors based on the current value of `vim.o.background`
 
-    -- Enable transparent background
+    -- Use an opaque background
     transparent = true,
 
     -- Reduce the overall saturation of colours for a more muted look
@@ -19,7 +21,7 @@ require("cyberdream").setup({
     -- Replace all fillchars with ' ' for the ultimate clean look
     hide_fillchars = true,
 
-    -- Apply a modern borderless look to pickers like Telescope, Snacks Picker & Fzf-Lua
+    -- Apply a modern borderless look to supported pickers
     borderless_pickers = false,
 
     -- Set terminal colors used in `:terminal`
@@ -43,6 +45,18 @@ require("cyberdream").setup({
     overrides = function(colors) -- NOTE: This function nullifies the `highlights` option
         -- Example:
         return {
+            -- Keep Git states distinct; grey is reserved for ignored paths.
+            SnacksPickerGitStatus = { fg = colors.blue },
+            SnacksPickerGitStatusAdded = { fg = colors.green },
+            SnacksPickerGitStatusUntracked = { fg = colors.red },
+            SnacksPickerGitStatusModified = { fg = colors.yellow },
+            SnacksPickerGitStatusDeleted = { fg = colors.red },
+            SnacksPickerGitStatusRenamed = { fg = colors.blue },
+            SnacksPickerGitStatusCopied = { fg = colors.purple },
+            SnacksPickerGitStatusStaged = { fg = colors.cyan },
+            SnacksPickerGitStatusUnmerged = { fg = colors.orange, bold = true },
+            SnacksPickerGitStatusIgnored = { fg = colors.grey },
+            SnacksPickerPathIgnored = { fg = colors.grey },
             -- Comment = { fg = colors.green, bg = "NONE", italic = true },
             -- ["@property"] = { fg = colors.magenta, bold = true },
             -- ["@string.rust"] = { fg = colors.magenta, bg = "NONE", underline = true },
@@ -54,12 +68,12 @@ require("cyberdream").setup({
         -- For a list of colors see `lua/cyberdream/colours.lua`
 
         -- Override colors for both light and dark variants
-        bg = "#000000",
+        -- bg = "#000000",
         green = "#00ff00",
 
         -- If you want to override colors for light or dark variants only, use the following format:
         dark = {
-            bg = "#16181a",
+            -- bg = "#16181a",
             bg_alt = "#1e2124",
             bg_highlight = "#3c4048",
             fg = "#ffffff",
